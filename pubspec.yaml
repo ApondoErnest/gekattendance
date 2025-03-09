@@ -20,6 +20,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  dio: ^5.4.0
+  shared_preferences: ^2.0.15
+  flutter_secure_storage: ^9.2.4
+  jwt_decoder: ^2.0.1
+  provider: ^6.0.0
+  flutter_svg: ^1.0.3
+  camera: ^0.10.5+5
+  permission_handler: ^11.0.1
+  fluttertoast: ^8.2.12
+  table_calendar: ^3.0.9
+
 
 dev_dependencies:
   flutter_test:
@@ -42,17 +53,17 @@ flutter:
   assets:
       - assets/images/
       - assets/fonts/
+      - assets/icons/
 
   # Fonts
   fonts:
-      - family: PlaywrightIndia
-        fonts:
-          - asset: assets/fonts/PlaywrightIndia-Regular.ttf
-      - family: Rale way
-        fonts:
-            - asset: assets/fonts/Rale-wa-Regular.ttf
-              weight: 700
-      - family: Simonetta
-        fonts:
-            - asset: assets/fonts/Simonetta-Regular.ttf
-              weight: 700
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../database/database_helper.dart'; // Import the database helper
+
+import '../../database/database_helper.dart'; // Import the database helper
 
 class TeacherSignup extends StatefulWidget {
   @override
@@ -85,26 +86,30 @@ class _TeacherSignupState extends State<TeacherSignup> {
                       TextFormField(
                         controller: nameController,
                         decoration: InputDecoration(labelText: 'Full Name'),
-                        validator: (value) => value!.isEmpty ? 'Enter your name' : null,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Enter your name' : null,
                       ),
                       SizedBox(height: 16),
                       TextFormField(
                         controller: emailController,
                         decoration: InputDecoration(labelText: 'Email'),
-                        validator: (value) => value!.isEmpty ? 'Enter your email' : null,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Enter your email' : null,
                       ),
                       SizedBox(height: 16),
                       TextFormField(
                         controller: phoneController,
                         decoration: InputDecoration(labelText: 'Phone Number'),
-                        validator: (value) => value!.isEmpty ? 'Enter your phone number' : null,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Enter your phone number' : null,
                       ),
                       SizedBox(height: 16),
                       TextFormField(
                         controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(labelText: 'Password'),
-                        validator: (value) => value!.isEmpty ? 'Enter a password' : null,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Enter a password' : null,
                       ),
                       SizedBox(height: 20),
                       ElevatedButton(

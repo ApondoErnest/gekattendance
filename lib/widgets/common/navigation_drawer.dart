@@ -1,11 +1,8 @@
-import 'package:emaketa/common/models/user.dart';
-import 'package:emaketa/common/navigation_service.dart';
-import 'package:emaketa/common/providers/user.dart';
-import 'package:emaketa/common/utilities.dart';
-import 'package:emaketa/view/screens/payment_methods/payment_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:gekattendance/models/user.dart';
+import 'package:gekattendance/providers/user_provider.dart';
+import 'package:gekattendance/utils/common.dart';
 import 'package:provider/provider.dart';
 
 class NavItemModel {
@@ -28,18 +25,9 @@ class CustomNavigationDrawer extends StatefulWidget {
 }
 
 class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
-  void _gotoPaymentMethods() {
+  void _gotoCourses() {
     Navigator.pop(context);
-    Navigator.push(
-        context,
-        PageTransition(
-            type: PageTransitionType.leftToRight,
-            child: const PaymentMethodsScreen()));
-  }
-
-  void _gotoDeliveryAddresses() {
-    Navigator.pop(context);
-    Navigator.pushNamed(context, '/delivery-addresses');
+    Navigator.pushNamed(context, '/student/courses');
   }
 
   @override
@@ -48,29 +36,15 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
     final User user = userProvider.user!;
     final List<NavItemModel> navItems = [
       NavItemModel(
-          headerText: 'Edit Profile',
-          bodyText: 'Update Your Personal Information',
-          iconPath: 'assets/icons/person.svg',
+          headerText: 'Courses',
+          bodyText: 'Your registered courses',
+          iconPath: 'assets/icons/book.svg',
           onTap: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, '/profile');
+            _gotoCourses();
           }),
-      NavItemModel(
-          headerText: 'Payment Methods',
-          bodyText: 'Your preferred means of payments',
-          iconPath: 'assets/icons/wallet.svg',
-          onTap: () {
-            _gotoPaymentMethods();
-          }),
-      NavItemModel(
-          headerText: 'Delivery Address',
-          bodyText: 'Where your goods would be delivered to',
-          iconPath: 'assets/icons/location.svg',
-          onTap: _gotoDeliveryAddresses),
       NavItemModel(
           headerText: 'Contact Us',
-          bodyText:
-              'Need help on how eMaketa works? Learn more from our knowledge base',
+          bodyText: 'AI Attendance',
           iconPath: 'assets/icons/headset.svg',
           onTap: () {}),
     ];
@@ -82,16 +56,6 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
         child: Container(
           width: drawerWidth,
           padding: const EdgeInsets.symmetric(horizontal: 32),
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0XFFAFD2FF), // Light blue at the top
-                Color(0xFFFFFFFF), // Almost white at the bottom
-              ],
-            ),
-          ),
           child: Column(
             children: [
               Expanded(
@@ -110,48 +74,10 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
                     SizedBox(
                       height: 100,
                       child: DrawerHeader(
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: user.profileImage.isEmpty
-                                  ? const AssetImage(
-                                      'assets/images/profile-placeholder.png',
-                                    )
-                                  : NetworkImage(user.profileImage),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  user.nickName.isNotEmpty
-                                      ? '@${user.nickName}'
-                                      : user.phoneNumber,
-                                  style:
-                                      Theme.of(context).textTheme.headlineSmall,
-                                ),
-                                // Text(
-                                //   'gillis@kunshort.com',
-                                //   style: Theme.of(context)
-                                //       .textTheme
-                                //       .bodySmall!
-                                //       .copyWith(color: Colors.black),
-                                // ),
-                                Text(
-                                  user.phoneNumber,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(color: Colors.black),
-                                )
-                              ],
-                            )
-                          ])),
+                          child: Text(
+                        user.email,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      )),
                     ),
                     const SizedBox(
                       height: 18,
@@ -163,24 +89,19 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        'Read Our Privacy Policy',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(color: Colors.black54, fontSize: 10),
-                      ),
+                      Text('Read Our Privacy Policy',
+                          textAlign: TextAlign.right,
+                          style: Theme.of(context).textTheme.bodySmall),
                       SizedBox(height: 4),
-                      Text(
-                        'Read Our Terms & Conditions',
-                        style: TextStyle(color: Colors.black54, fontSize: 10),
-                      ),
+                      Text('Read Our Terms & Conditions',
+                          style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                   const Divider(
                     thickness: 1,
-                    color: Colors.black,
                   ),
                   const SizedBox(
                     height: 24,
@@ -206,15 +127,11 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
                       ),
                     ),
                     title: Text('Log Out',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.black)),
+                        style: Theme.of(context).textTheme.bodyMedium),
                     onTap: () async {
                       await logout();
-                      if (NavigationService.navigatorKey.currentState != null) {
-                        NavigationService.navigatorKey.currentState!
-                            .popAndPushNamed('/login', arguments: widget);
+                      if (context.mounted) {
+                        Navigator.popAndPushNamed(context, '/auth/login');
                       }
                     },
                   ),
@@ -276,14 +193,9 @@ class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
                         .copyWith(fontWeight: FontWeight.w600),
                     textAlign: TextAlign.start,
                   ),
-                  Text(
-                    navItem.bodyText,
-                    textAlign: TextAlign.left,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Colors.black),
-                  )
+                  Text(navItem.bodyText,
+                      textAlign: TextAlign.left,
+                      style: Theme.of(context).textTheme.bodySmall)
                 ],
               ),
             )

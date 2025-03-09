@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
-import '../database/database_helper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../../database/database_helper.dart';
 
 class StudentRegistrationPage extends StatefulWidget {
   @override
-  _StudentRegistrationPageState createState() => _StudentRegistrationPageState();
+  _StudentRegistrationPageState createState() =>
+      _StudentRegistrationPageState();
 }
 
 class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
@@ -16,7 +19,8 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
   File? _image;
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
@@ -84,13 +88,16 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                 Text('Register a Student',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueAccent)),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent)),
                 SizedBox(height: 20),
                 TextField(
                   controller: _fullNameController,
                   decoration: InputDecoration(
                     labelText: 'Full Name',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -100,7 +107,8 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   controller: _matriculeController,
                   decoration: InputDecoration(
                     labelText: 'Matricule Number',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -111,7 +119,8 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   readOnly: true,
                   decoration: InputDecoration(
                     labelText: 'Date of Birth',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
                     filled: true,
                     fillColor: Colors.white,
                     suffixIcon: IconButton(
@@ -125,7 +134,8 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   controller: _departmentController,
                   decoration: InputDecoration(
                     labelText: 'Department',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -133,31 +143,38 @@ class _StudentRegistrationPageState extends State<StudentRegistrationPage> {
                 SizedBox(height: 10),
                 _image == null
                     ? Text('No image selected.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16, color: Colors.grey))
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16, color: Colors.grey))
                     : ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.file(_image!, height: 100, fit: BoxFit.cover)),
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.file(_image!,
+                            height: 100, fit: BoxFit.cover)),
                 SizedBox(height: 10),
                 ElevatedButton.icon(
                   onPressed: _pickImage,
                   icon: Icon(Icons.camera_alt),
-                  label: Text('Pick Facial Image', style: TextStyle(fontSize: 16)),
+                  label:
+                      Text('Pick Facial Image', style: TextStyle(fontSize: 16)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.lightBlueAccent,
                     padding: EdgeInsets.symmetric(vertical: 12.0),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
                   ),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _registerStudent,
                   child: Text('Register Student',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     padding: EdgeInsets.symmetric(vertical: 12.0),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
                   ),
                 ),
               ],

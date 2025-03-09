@@ -1,0 +1,2 @@
+/Users/blackhat/dev/MEng/gekattendance/android/app/.cxx/Debug/692y6p2o/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/blackhat/dev/MEng/gekattendance/android/app/.cxx/Debug/692y6p2o/armeabi-v7a/CMakeFiles/rebuild_cache.dir

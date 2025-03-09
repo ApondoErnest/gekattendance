@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import '../database/database_helper.dart';
+
+import '../../database/database_helper.dart';
 
 class AttendancePage extends StatefulWidget {
   final String teacherName;
@@ -16,7 +18,8 @@ class _AttendancePageState extends State<AttendancePage> {
   List<Map<String, String>> presentStudents = [];
 
   Future<void> _pickVideo() async {
-    final pickedFile = await ImagePicker().pickVideo(source: ImageSource.camera);
+    final pickedFile =
+        await ImagePicker().pickVideo(source: ImageSource.camera);
     if (pickedFile != null) {
       setState(() {
         _video = File(pickedFile.path);
@@ -47,7 +50,8 @@ class _AttendancePageState extends State<AttendancePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Attendance', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+        title: Text('Attendance',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
         leading: PopupMenuButton<String>(
@@ -59,7 +63,8 @@ class _AttendancePageState extends State<AttendancePage> {
           },
           itemBuilder: (context) => [
             PopupMenuItem(
-              child: Text('Logged in: ${widget.teacherName}', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text('Logged in: ${widget.teacherName}',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               enabled: false,
             ),
             PopupMenuItem(
@@ -78,11 +83,18 @@ class _AttendancePageState extends State<AttendancePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 20),
-            Text('Capture Video for Attendance', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blueAccent)),
+            Text('Capture Video for Attendance',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueAccent)),
             SizedBox(height: 10),
             _video == null
-                ? Text('No video captured.', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Colors.grey))
-                : Text('Video ready for processing', style: TextStyle(fontSize: 16, color: Colors.green)),
+                ? Text('No video captured.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, color: Colors.grey))
+                : Text('Video ready for processing',
+                    style: TextStyle(fontSize: 16, color: Colors.green)),
             SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed: _pickVideo,
@@ -91,30 +103,38 @@ class _AttendancePageState extends State<AttendancePage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.lightBlueAccent,
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0)),
               ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: _video != null ? _makeAttendance : null,
               child: Text('Make Attendance',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: _video != null ? Colors.green : Colors.grey,
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0)),
               ),
             ),
             SizedBox(height: 30),
-            Text('Present Students', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text('Present Students',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Expanded(
               child: ListView.builder(
                 itemCount: presentStudents.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(presentStudents[index]['name']!,
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    subtitle: Text('Matricule: ${presentStudents[index]['matricule']}',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    subtitle: Text(
+                        'Matricule: ${presentStudents[index]['matricule']}',
                         style: TextStyle(fontSize: 14, color: Colors.grey)),
                     leading: Icon(Icons.check_circle, color: Colors.green),
                   );

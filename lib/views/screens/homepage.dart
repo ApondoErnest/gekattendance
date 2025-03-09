@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../database/database_helper.dart';
+
+import '../../database/database_helper.dart';
 import 'attendance_page.dart'; // Ensure this file exists
 
 class HomePage extends StatefulWidget {
@@ -23,7 +24,8 @@ class _HomePageState extends State<HomePage> {
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => AttendancePage(teacherName: teacher['name'])),
+        MaterialPageRoute(
+            builder: (context) => AttendancePage(teacherName: teacher['name'])),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -95,7 +97,8 @@ class _HomePageState extends State<HomePage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    prefixIcon: Icon(Icons.person, color: Colors.lightBlueAccent),
+                    prefixIcon:
+                        Icon(Icons.person, color: Colors.lightBlueAccent),
                     filled: true,
                     fillColor: Colors.white,
                   ),

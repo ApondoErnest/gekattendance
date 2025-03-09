@@ -1,0 +1,20 @@
+                        -H/Users/blackhat/dev/flutter/packages/flutter_tools/gradle/src/main/groovy
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=21
+-DANDROID_PLATFORM=android-21
+-DANDROID_ABI=armeabi-v7a
+-DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a
+-DANDROID_NDK=/Users/blackhat/Library/Android/sdk/ndk/26.3.11579264
+-DCMAKE_ANDROID_NDK=/Users/blackhat/Library/Android/sdk/ndk/26.3.11579264
+-DCMAKE_TOOLCHAIN_FILE=/Users/blackhat/Library/Android/sdk/ndk/26.3.11579264/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/blackhat/Library/Android/sdk/cmake/3.22.1/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/blackhat/dev/MEng/gekattendance/build/app/intermediates/cxx/Debug/692y6p2o/obj/armeabi-v7a
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/Users/blackhat/dev/MEng/gekattendance/build/app/intermediates/cxx/Debug/692y6p2o/obj/armeabi-v7a
+-DCMAKE_BUILD_TYPE=Debug
+-B/Users/blackhat/dev/MEng/gekattendance/android/app/.cxx/Debug/692y6p2o/armeabi-v7a
+-GNinja
+-Wno-dev
+--no-warn-unused-cli
+                        Build command args: []
+                        Version: 2
