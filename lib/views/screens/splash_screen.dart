@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 import 'homepage.dart'; // Import the homepage
 
 class SplashScreen extends StatefulWidget {
